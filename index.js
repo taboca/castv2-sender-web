@@ -33,7 +33,7 @@ function ondeviceup(host) {
 
     // display receiver status updates
     receiver.on('message', function(data, broadcast) {
-      if(data.type = 'RECEIVER_STATUS') {
+      if(data.type == 'RECEIVER_STATUS' && data.requestId == 1) {
 	
 	var transportIdSession='';
 	for(k in data.status.applications) { 
