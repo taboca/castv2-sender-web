@@ -27,7 +27,7 @@ function ondeviceup(host) {
 
     // talk with a registered Google Cast app
     // In this case, A7BD302D is the RemoteStage SlideQuest app
-    receiver.send({ type: 'LAUNCH', appId: 'A7BD302D', requestId: 1 });
+    receiver.send({ type: 'LAUNCH', appId: '2CC9F3BF', requestId: 1 });
 
     // display receiver status updates
     receiver.on('message', function(data, broadcast) {
@@ -35,7 +35,7 @@ function ondeviceup(host) {
           var transportIdSession='';
           for(k in data.status.applications) {
           	var appData = data.status.applications[k];
-          	if(appData.appId == 'A7BD302D') {
+          	if(appData.appId == '2CC9F3BF') {
           		transportIdSession = appData.transportId;
           		console.log('transport id = ' + transportIdSession);
             }
@@ -44,7 +44,7 @@ function ondeviceup(host) {
           var connection = client.createChannel('sender-0', transportIdSession, 'urn:x-cast:com.google.cast.tp.connection', 'JSON');
           connection.send({ type: 'CONNECT' });
           var app   = client.createChannel('sender-0', transportIdSession , 'urn:x-cast:com.telasocial.tagvisor', 'JSON');
-          app.send({ url: 'http://www.telasocial.com', otherData: false });
+          app.send({ command:'fastclip_tv_remote_page_load', channel:'marcio', url: 'http://www.telasocial.com.br', otherData: false });
       }
     });
   });
